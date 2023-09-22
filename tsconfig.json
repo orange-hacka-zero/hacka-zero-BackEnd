@@ -12,17 +12,30 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
+
       "@config": ["config/index.ts"],
       "@config/*": ["config/*"],
+
       "@controllers": ["controllers/index.ts"],
       "@controllers/*": ["controllers/*"],
+
+      "@repositories": ["repositories/index.ts"],
       "@repositories/*": ["repositories/*"],
+
       "@routes": ["routes/index.ts"],
       "@routes/*": ["routes/*"],
+
       "@services/": ["services/index.ts"],
       "@services/*": ["services/*"],
+
       "@utils": ["utils/index.ts"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      
+      "@validations": ["validations/index.ts"],
+      "@validations/*": ["validations/*"],
+      
+      "@middlewares": ["middlewares/index.ts"],
+      "@middlewares/*": ["middlewares/*"],
     }
   }
 }
