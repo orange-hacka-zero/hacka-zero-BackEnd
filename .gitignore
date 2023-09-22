@@ -2,3 +2,6 @@ dist
 node_modules/
 .env
 coverage/
+mocke.ts
+mocke2.ts
+prisma/migrations/
