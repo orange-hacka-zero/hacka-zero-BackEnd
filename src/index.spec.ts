@@ -1,8 +1,7 @@
 import router from "@routes";
-import express from "express";
 import request from "supertest";
+import app from "@/server";
 
-const app = express();
 app.use("/", router);
 
 describe("Home Routes testing", function () {
