@@ -9,10 +9,6 @@ describe("Home Routes testing", function () {
     const res = await request(app).get("/");
     expect(res.header["content-type"]).toBe("text/html; charset=utf-8");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toEqual("Hello World!");
+    expect(res.text).toEqual("ok");
   });
-});
-
-it("testing test", () => {
-  expect(true).toBe(true);
 });
