@@ -29,3 +29,32 @@ describe("User Routes testing", function () {
     });
   });
 });
+
+describe("Auth Routes testing", function () {
+  test("responds to POST in /auth/login", async () => {
+    const res = await request(app).post("/auth/login").send({
+      email: "user-Y0c3tn@techMeets.com",
+      password: "ZWVPwRRtEGZ90EW",
+    });
+
+    expect(res.header["content-type"]).toBe("application/json; charset=utf-8");
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual({
+      token: expect.any(String),
+      user: {
+        id: expect.any(String),
+        role: expect.any(String),
+      },
+    });
+  });
+
+  test("responds to POST in /auth/login with wrong email and password", async () => {
+    const res = await request(app).post("/auth/login").send({
+      email: "email",
+      password: "password",
+    });
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body).toEqual({ message: "Ocorreu um erro no login" });
+  });
+});
