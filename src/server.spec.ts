@@ -30,7 +30,7 @@ describe("User Routes testing", function () {
   });
 });
 
-describe("Auth Routes testing", function () {
+describe("Autenticante Routes testing", function () {
   test("responds to POST in /auth/login", async () => {
     const res = await request(app).post("/auth/login").send({
       email: "user-Y0c3tn@techMeets.com",
