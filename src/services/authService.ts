@@ -1,17 +1,17 @@
 import { IBcryptAdapter } from "@/interfaces/bcrypt";
 import { IUserRepository } from "@/interfaces/user";
-import { iJwtAdapter } from "@/interfaces/jwt";
+import { IJwtAdapter } from "@/interfaces/jwt";
 import { PrismaClient } from "@prisma/client";
 import { IAuthService } from "@/interfaces/auth";
 
 class AuthService implements IAuthService {
-  private jwtAdapter: iJwtAdapter;
+  private jwtAdapter: IJwtAdapter;
   private prisma: PrismaClient;
   private bcrypt: IBcryptAdapter;
   private userRepository: IUserRepository;
 
   constructor(
-    jwtAdapter: iJwtAdapter,
+    jwtAdapter: IJwtAdapter,
     prisma: PrismaClient,
     bcrypt: IBcryptAdapter,
     UserRepository: IUserRepository

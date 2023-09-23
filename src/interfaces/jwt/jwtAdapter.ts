@@ -1,9 +1,9 @@
-export interface iJwtPayload {
+export interface IJwtPayload {
   id: string;
   role: "USER" | "ADMIN";
 }
 
-export interface iJwtAdapter {
-  sign(payload: iJwtPayload): Promise<string>;
+export interface IJwtAdapter {
+  sign(payload: IJwtPayload): Promise<string>;
   verify(token: string): Promise<unknown>;
 }

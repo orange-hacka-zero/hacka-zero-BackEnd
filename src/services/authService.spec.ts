@@ -2,7 +2,7 @@
 import { AuthService } from "@/services/authService";
 import { MockBcryptAdapter } from "@/utils/mock/mockBcryptAdapter";
 import { MockUserRepository } from "@/repositories/mock/mockUserRepository";
-import { iJwtAdapter } from "@/interfaces/jwt";
+import { IJwtAdapter } from "@/interfaces/jwt";
 import { IUserRepository } from "@/interfaces/user";
 
 let authService: AuthService;
@@ -28,7 +28,7 @@ beforeEach(() => {
   const bcryptAdapter = bcryptAdapterMock as unknown as MockBcryptAdapter;
 
   authService = new AuthService(
-    jwtAdapterMock as iJwtAdapter,
+    jwtAdapterMock as IJwtAdapter,
     ctx.prisma,
     bcryptAdapter,
     userRepository
