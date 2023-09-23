@@ -1,5 +1,6 @@
 import { MockContext, createMockContext, Context } from "@database/mock/client";
 import { UserRepository } from "@repositories/userRepository";
+import { Role } from "@prisma/client";
 
 let mockCtx: MockContext;
 let ctx: Context;
@@ -11,25 +12,21 @@ beforeEach(() => {
   userRepository = new UserRepository();
 });
 
-describe("userRepository teste", () => {
+describe("Testing user repository module", () => {
   test("should create a new user", async () => {
-    const createdAt = new Date();
-    const updatedAt = new Date();
-
     const user = {
       id: "1",
-      name: "John Doe",
       email: "john-doe@gmail.com",
       password: "123456",
-      createdAt: createdAt,
-      updatedAt: updatedAt,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      role: Role.USER,
     };
 
     mockCtx.prisma.user.create.mockResolvedValue(user);
     await expect(
       userRepository.create(
         {
-          name: "John Doe",
           email: "john-doe@gmail.com",
           password: "123456",
         },
@@ -41,5 +38,41 @@ describe("userRepository teste", () => {
       updatedAt: expect.any(Date),
       id: "1",
     });
+  });
+
+  test("should validate error when create a new user", async () => {
+    mockCtx.prisma.user.create.mockRejectedValue(new Error("Error"));
+    await expect(
+      userRepository.create(
+        {
+          email: "",
+          password: "123456",
+        },
+        ctx
+      )
+    ).rejects.toThrowError("Error");
+  });
+
+  test("should validate if email already exist", async () => {
+    const user = {
+      id: "1",
+      email: "john-doe@gmail.com",
+      password: "123456",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      role: Role.USER,
+    };
+
+    mockCtx.prisma.user.findUnique.mockResolvedValue(user);
+    await expect(
+      userRepository.validateIfEmailExists("john-doe@gmail.com", ctx)
+    ).resolves.toBeTruthy();
+  });
+
+  test("should validate if email does not exist", async () => {
+    mockCtx.prisma.user.findUnique.mockResolvedValue(null);
+    await expect(
+      userRepository.validateIfEmailExists("john-doe@gmail.com1", ctx)
+    ).resolves.toBeFalsy();
   });
 });
