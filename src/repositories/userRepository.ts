@@ -1,8 +1,5 @@
-import { prisma } from "@database/client";
 import { IUserCreate, IUserRepository } from "@interfaces/user";
 import { Context } from "@/database/mock/client";
-
-//const { user } = prisma;
 
 class UserRepository implements IUserRepository {
   public async create({ password, name, email }: IUserCreate, ctx: Context) {
@@ -17,8 +14,8 @@ class UserRepository implements IUserRepository {
     return newUser;
   }
 
-  public async validateIfEmailExists(email: string) {
-    const user = await prisma.user.findUnique({
+  public async validateIfEmailExists(email: string, ctx: Context) {
+    const user = await ctx.prisma.user.findUnique({
       where: {
         email,
       },
