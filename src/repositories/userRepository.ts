@@ -22,6 +22,26 @@ class UserRepository implements IUserRepository {
 
     return !!user;
   }
+
+  public async getUserByEmail(email: string, ctx: Context) {
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    return user;
+  }
+
+  public async getUserById(id: string, ctx: Context) {
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return user;
+  }
 }
 
 export { UserRepository };
