@@ -14,7 +14,8 @@
     "test:staged": "yarn test --findRelatedTests",
     "test:push": "yarn test --coverage",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "npx prisma migrate dev --name init"
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^5.3.1",
