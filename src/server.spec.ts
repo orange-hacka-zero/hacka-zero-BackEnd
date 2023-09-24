@@ -33,8 +33,8 @@ describe("User Routes testing", function () {
 describe("Autenticante Routes testing", function () {
   test("responds to POST in /auth/login", async () => {
     const res = await request(app).post("/auth/login").send({
-      email: "user-Y0c3tn@techMeets.com",
-      password: "ZWVPwRRtEGZ90EW",
+      email: "user-HGe4zeehyi@techMeets.com",
+      password: "ezjWSaPxDs7nhd7",
     });
 
     expect(res.header["content-type"]).toBe("application/json; charset=utf-8");
