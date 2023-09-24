@@ -25,6 +25,8 @@ class EventsController {
   public async findUniqueById(req: Request, res: Response) {
     const { id } = req.params;
 
+    if (!id) return res.status(400).json({ message: "Id não informado" });
+
     try {
       const event = await this.eventsService.findUniqueById(id);
 
@@ -64,6 +66,8 @@ class EventsController {
 
   public async deleteEvent(req: Request, res: Response) {
     const { id } = req.params;
+
+    if (!id) return res.status(400).json({ message: "Id não informado" });
 
     try {
       await this.eventsService.deleteEvent(id);
