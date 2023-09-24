@@ -32,5 +32,8 @@ module.exports = {
 
     "@validations/(.*)": "<rootDir>/src/validations/$1",
     "@validations": "<rootDir>/src/validations/index.ts",
+
+    "@database/(.*)": "<rootDir>/src/database/$1",
+    "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",
   },
 };

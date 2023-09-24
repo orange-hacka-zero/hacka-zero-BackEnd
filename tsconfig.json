@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "strict": true /* Enable all strict type-checking options. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "strictNullChecks": true,
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
@@ -36,6 +37,10 @@
       
       "@middlewares": ["middlewares/index.ts"],
       "@middlewares/*": ["middlewares/*"],
+
+      "@database/*": ["database/*"],
+
+      "@interfaces/*": ["interfaces/*"],
     }
   }
 }
