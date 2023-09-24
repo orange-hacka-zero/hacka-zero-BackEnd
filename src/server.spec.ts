@@ -62,3 +62,61 @@ describe("Autenticante Routes testing", function () {
     expect(res.body).toEqual({ message: "Ocorreu um erro no login" });
   });
 });
+
+/* describe("Events Routes testing", function () {
+  test("responds to POST in /events/create", async () => {
+    const res = await request(app).post("/events/create").send({
+      date: new Date(),
+      description: "Evento de teste para o jest",
+      name: "Teste de evento",
+      link: "orangeJuice.com",
+      modalities: "ONLINE",
+      address: "Rua dos testes, 123",
+      paymentType: "FREE",
+    });
+
+    console.log({ res });
+
+    expect(res.header["content-type"]).toBe("application/json; charset=utf-8");
+    expect(res.statusCode).toBe(201);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+      description: expect.any(String),
+      link: expect.any(String),
+      modalities: expect.any(String),
+      paymentType: expect.any(String),
+      date: expect.any(String),
+      address: expect.any(String),
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String),
+    });
+  });
+
+  test("responds to GET in /events/get_all", async () => {
+    const res = await request(app).get("/events/get_all");
+
+    expect(res.header["content-type"]).toBe("application/json; charset=utf-8");
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual(
+      expect.arrayContaining(
+        [
+          {
+            id: expect.any(String),
+            name: expect.any(String),
+            description: expect.any(String),
+            date: expect.any(String),
+            time: expect.any(String),
+            price: expect.any(Number),
+            address: expect.any(String),
+            city: expect.any(String),
+            uf: expect.any(String),
+            user_id: expect.any(String),
+            createdAt: expect.any(String),
+            updatedAt: expect.any(String),
+          },
+        ] || []
+      )
+    );
+  });
+}); */
