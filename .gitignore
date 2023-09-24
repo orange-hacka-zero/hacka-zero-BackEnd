@@ -4,5 +4,4 @@ node_modules/
 coverage/
 mocke.ts
 mocke2.ts
-prisma/migrations/
 yarn-error.log
