@@ -20,38 +20,26 @@ model User {
 }
 
 model Favorites {
-  id                String              @id @default(uuid())
-  user              User                @relation(fields: [userId], references: [id])
-  userId            String              @unique
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  events            Events[]
-  EventsInFavorites EventsInFavorites[]
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  events    Events[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Events {
-  id                String              @id @default(uuid())
-  name              String
-  date              DateTime
-  description       String
-  link              String
-  address           String?
-  modalities        Modality
-  paymentType       PaymentType
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  favorites         Favorites[]
-  EventsInFavorites EventsInFavorites[]
-}
-
-model EventsInFavorites {
-  id          String    @id @default(uuid())
-  event       Events    @relation(fields: [eventId], references: [id])
-  eventId     String
-  favorites   Favorites @relation(fields: [favoritesId], references: [id])
-  favoritesId String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id          String      @id @default(uuid())
+  name        String
+  date        DateTime
+  description String
+  link        String
+  address     String?
+  modalities  Modality
+  paymentType PaymentType
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  favorites   Favorites[]
 }
 
 enum Role {
