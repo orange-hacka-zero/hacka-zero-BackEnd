@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AuthControllerFactory } from "@/factories/authFactorie";
+import { AuthControllerFactory } from "@/factories/authFactory";
 
 const authRoute = Router();
 

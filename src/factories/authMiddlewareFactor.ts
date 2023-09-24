@@ -6,7 +6,7 @@ import config from "@/config/environment";
 
 const { secret } = config.jwt;
 
-const AuthMiddlewareFactor = (): AuthMiddleware => {
+const AuthMiddlewareFactory = (): AuthMiddleware => {
   const jwtSecret = secret;
   const jwtAdapter = new JwtAdapter(jwtSecret);
   const userRepository = new UserRepository();
@@ -16,4 +16,4 @@ const AuthMiddlewareFactor = (): AuthMiddleware => {
   return authMiddleware;
 };
 
-export { AuthMiddlewareFactor };
+export { AuthMiddlewareFactory };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { UserControllerFactory } from "@/factories/userFactorie";
+import { UserControllerFactory } from "@/factories/userFactory";
 
 const userRouter = Router();
 
