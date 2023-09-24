@@ -5,7 +5,7 @@ import { IJwtAdapter } from "@/interfaces/jwt";
 import { Response, NextFunction } from "express";
 import { AuthenticationRequest } from "@/interfaces/express";
 
-describe("AuthMiddleware", () => {
+describe("Testing the middleware  AuthMiddleware", () => {
   let authMiddleware: AuthMiddleware;
 
   const jwtAdapterMock = {
