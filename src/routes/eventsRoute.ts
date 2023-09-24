@@ -3,6 +3,11 @@ import { EventsControllerFactory } from "@/factories/eventsFactory";
 import { isAdminMiddleware } from "@/middlewares/isAdminMiddleware";
 import { AuthenticationRequest } from "@/interfaces/express";
 import { AuthMiddlewareFactory } from "@/factories/authMiddlewareFactor";
+import validationMiddleware from "@/middlewares/validationMiddleware";
+import {
+  createEventSchema,
+  updateEventSchema,
+} from "@validations/eventValidations";
 
 const eventsRouter = Router();
 
@@ -12,6 +17,7 @@ eventsRouter.post(
     return AuthMiddlewareFactory().authenticate(request, response, next);
   },
   isAdminMiddleware,
+  validationMiddleware(createEventSchema),
   (req, res) => {
     return EventsControllerFactory().create(req, res);
   }
@@ -31,6 +37,7 @@ eventsRouter.put(
     return AuthMiddlewareFactory().authenticate(request, response, next);
   },
   isAdminMiddleware,
+  validationMiddleware(updateEventSchema),
   (req, res) => {
     return EventsControllerFactory().updateEvent(req, res);
   }
