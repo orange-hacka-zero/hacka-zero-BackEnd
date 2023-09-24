@@ -15,7 +15,14 @@ describe("Home Routes testing", function () {
 
 describe("User Routes testing", function () {
   test("responds to POST in /user/new_user", async () => {
-    const res = await request(app).post("/user/new_account");
+    const randomIp = Math.floor(Math.random() * 255) + 1;
+
+    const res = await request(app)
+      .post("/user/new_account")
+      .set(
+        "X-Forwarded-For",
+        `${randomIp}.${randomIp}.${randomIp}.${randomIp}}`
+      );
 
     expect(res.header["content-type"]).toBe("application/json; charset=utf-8");
     expect(res.statusCode).toBe(201);
