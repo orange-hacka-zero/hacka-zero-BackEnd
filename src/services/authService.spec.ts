@@ -34,7 +34,12 @@ beforeEach(() => {
     userRepository
   );
 });
-describe("AuthService", () => {
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+describe("testing a  auth service", () => {
   describe("Testing login service ", () => {
     it("should return a token and user when login is successful", async () => {
       const user = {

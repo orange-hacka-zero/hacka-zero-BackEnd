@@ -8,8 +8,14 @@ class UserController {
   }
 
   public async create(_req: Request, res: Response): Promise<Response> {
-    const newUser = await this.userService.createRandomUser();
-    return res.status(201).json(newUser);
+    try {
+      const newUser = await this.userService.createRandomUser();
+      return res.status(201).json(newUser);
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ message: "Ocorreu um erro ao criar usuário" });
+    }
   }
 }
 
