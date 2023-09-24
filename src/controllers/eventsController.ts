@@ -61,6 +61,20 @@ class EventsController {
         .json({ message: "Ocorreu um erro ao atualizar o evento" });
     }
   }
+
+  public async deleteEvent(req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      await this.eventsService.deleteEvent(id);
+
+      return res.status(200).json({ message: "Evento deletado com sucesso" });
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ message: "Ocorreu um erro ao deletar o evento" });
+    }
+  }
 }
 
 export { EventsController };
