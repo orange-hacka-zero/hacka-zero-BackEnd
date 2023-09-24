@@ -19,10 +19,7 @@ describe("User Routes testing", function () {
 
     const res = await request(app)
       .post("/user/new_account")
-      .set(
-        "X-Forwarded-For",
-        `${randomIp}.${randomIp}.${randomIp}.${randomIp}}`
-      );
+      .set("ip", `${randomIp}.${randomIp}.${randomIp}.${randomIp}}`);
 
     expect(res.header["content-type"]).toBe("application/json; charset=utf-8");
     expect(res.statusCode).toBe(201);
