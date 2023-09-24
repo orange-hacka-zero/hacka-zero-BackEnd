@@ -46,7 +46,7 @@ class EventsRepository implements IEventsRepository {
         id: data.id,
       },
       data: {
-        name: data.id,
+        name: data.name,
         description: data.description,
         link: data.link,
         modalities: data.modalities,
