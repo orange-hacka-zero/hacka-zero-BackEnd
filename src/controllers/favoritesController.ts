@@ -54,7 +54,7 @@ class FavoritesController {
   }
 
   public async delete(request: AuthenticationRequest, response: Response) {
-    const { eventId } = request.params;
+    const { id: eventId } = request.params;
     const id = request.auth?.id;
 
     if (!eventId || !id) {
