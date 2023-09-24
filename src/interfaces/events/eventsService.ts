@@ -5,4 +5,5 @@ export interface IEventsService {
   findUniqueById(id: string): Promise<unknown>;
   getAllEvents(): Promise<unknown>;
   updateEvent(data: IEventEdit): Promise<unknown>;
+  deleteEvent(id: string): Promise<unknown>;
 }
