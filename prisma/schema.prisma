@@ -8,57 +8,50 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(uuid())
-  email     String      @unique
+  id        String     @id @default(uuid())
+  email     String     @unique
   password  String
-  role      Role        @default(USER)
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  favorites Favorites[]
+  role      Role       @default(USER)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  favorites Favorites?
 
   @@index([email, id])
 }
 
 model Favorites {
-  id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  events    Events[]
+  id                String              @id @default(uuid())
+  user              User                @relation(fields: [userId], references: [id])
+  userId            String              @unique
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  events            Events[]
+  EventsInFavorites EventsInFavorites[]
 }
 
 model Events {
-  id          String        @id @default(uuid())
-  name        String
-  date        DateTime
-  description String
-  link        String
-  mapsLink    String?
-  address     EventAddress?
-  modalities  Modality
-  paymentType PaymentType
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  favorites   Favorites     @relation(fields: [favoritesId], references: [id])
-  favoritesId String
+  id                String              @id @default(uuid())
+  name              String
+  date              DateTime
+  description       String
+  link              String
+  address           String?
+  modalities        Modality
+  paymentType       PaymentType
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  favorites         Favorites[]
+  EventsInFavorites EventsInFavorites[]
 }
 
-model EventAddress {
-  id           String @id @default(uuid())
-  event        Events @relation(fields: [eventId], references: [id])
-  eventId      String @unique
-  neighborhood String
-  street       String
-  number       String
-  zipCode      String
-  city         String
-  state        String
-  latitude     Float?
-  longitude    Float?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model EventsInFavorites {
+  id          String    @id @default(uuid())
+  event       Events    @relation(fields: [eventId], references: [id])
+  eventId     String
+  favorites   Favorites @relation(fields: [favoritesId], references: [id])
+  favoritesId String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 enum Role {
