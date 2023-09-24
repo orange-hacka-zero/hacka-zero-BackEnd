@@ -16,6 +16,10 @@ class EventsService {
   public async findUniqueById(id: string) {
     const event = await this.eventsRepository.findUniqueById(id);
 
+    if (!event) {
+      throw new Error("Evento não encontrado");
+    }
+
     return event;
   }
 
@@ -29,6 +33,18 @@ class EventsService {
     const updatedEvent = await this.eventsRepository.updateEvent(data);
 
     return updatedEvent;
+  }
+
+  public async deleteEvent(id: string) {
+    const event = await this.eventsRepository.findUniqueById(id);
+
+    if (!event) {
+      throw new Error("Evento não encontrado");
+    }
+
+    const deletedEvent = await this.eventsRepository.deleteEvent(id);
+
+    return deletedEvent;
   }
 }
 
